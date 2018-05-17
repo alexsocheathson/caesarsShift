@@ -3,7 +3,7 @@
 function randomEncryption(input){
   var result = "";
   var shiftBy = Math.floor(Math.random() * 27);
-  //console.log(shiftBy);
+  console.log(shiftBy);
 
   var i;
   for (i = 0; i < input.length; i++){ //ASCII
