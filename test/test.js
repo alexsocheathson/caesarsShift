@@ -1,56 +1,9 @@
-//var getFrequency = require('./lib/getFrequency');
+'use strict'
+
+// var getFrequency = require('./lib/getFrequency');
 var _ = require('lodash');
-
-
-function getFrequency(string) {
-    var freq = {};
-    for (var i=0; i<string.length;i++) {
-        var character = string.charAt(i);
-        if(character == ' '){
-
-        }
-        else if (freq[character]) {
-           freq[character]++;
-        } else {
-           freq[character] = 1;
-        }
-    }
-
-    return freq;
-};
-
-Object.prototype.getKeyByValue = function( value ) {
-    for( var prop in this ) {
-        if( this.hasOwnProperty( prop ) ) {
-             if( this[ prop ] === value )
-                 return prop;
-        }
-    }
-}
-
-function randomEncryption(input){
-  var result = "";
-  var shiftBy = Math.floor(Math.random() * 27);
-  console.log(shiftBy);
-
-  var i;
-  for (i = 0; i < input.length; i++){ //ASCII
-    //handle uppercase letters
-    if (input[i].charCodeAt(0) >= 65 && input[i].charCodeAt(0) <= 90)  {
-       result = result + String.fromCharCode((input[i].charCodeAt(0)+shiftBy-65)%26 +65);
-      
-    }
-    //lower case letters
-    else if (input[i].charCodeAt(0) >= 97 && input[i].charCodeAt(0) <= 122) {
-       result += String.fromCharCode((input[i].charCodeAt(0)+shiftBy-97)%26 +97);
-    }
-    //all else
-    else{
-        result += input[i];
-    }
-  }
-  return result;
-}
+var ceasars = require('../');
+var {randomEncryption, decryption} = ceasars;
 
 var enc = randomEncryption("He didn't say any more but we've always been unusually communicative in a reserved way, \
   and I understood that he meant a great deal more than that. In consequence I'm inclined to reserve all judgments, a \
@@ -75,54 +28,11 @@ var enc = randomEncryption("He didn't say any more but we've always been unusual
   at the end; it is what preyed on Gatsby, what foul dust floated in the wake of his dreams that temporarily closed out my \
   interest in the abortive sorrows and short-winded elations of men.");
 
-function decryption(input){
-  var str = input.toLowerCase();
-  var result = "";
-  var freak = getFrequency(str);
-  var getMax = _.max(Object.values(freak), function (o) { return freak[o]; });
-  getMax = freak.getKeyByValue(getMax);
-  
-  //console.log(freak);
-  //console.log(freak.getKeyByValue(getMax));
-  
-  //var shiftBy = getMax.charCodeAt(0) - "e".charCodeAt(0)%26; 
-  //console.log(shiftBy)
-
-  var shiftBy = "e".charCodeAt(0) - getMax.charCodeAt(0); 
-  if (shiftBy < 0){
-    shiftBy = 26 + shiftBy;
-  }
-  console.log(shiftBy)
-
-  var result = "";
-  for (i = 0; i < input.length; i++){ //ASCII
-    //handle uppercase letters
-    if (input[i].charCodeAt(0) >= 65 && input[i].charCodeAt(0) <= 90)  {
-       result = result + String.fromCharCode((input[i].charCodeAt(0)+shiftBy-65)%26 +65);
-      
-    }
-    //lower case letters
-    else if (input[i].charCodeAt(0) >= 97 && input[i].charCodeAt(0) <= 122) {
-       result += String.fromCharCode((input[i].charCodeAt(0)+shiftBy-97)%26 +97);
-    }
-    //all else
-    else{
-        result += input[i];
-    }
-  }
-  return result;
-  
-}
+  // var enc = randomEncryption("Hi my name is alex.");
 
 var dec = decryption(enc);
 
-//console.log(enc.substring(0,45));
-console.log(dec.substring(0,45));
-
-
-
-
-
-
-
-
+// console.log(enc.substring(0,45));
+// console.log(dec.substring(0,45));
+console.log(enc);
+console.log(dec);
