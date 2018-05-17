@@ -1,7 +1,5 @@
 'use strict'
 
-// var getFrequency = require('./lib/getFrequency');
-var _ = require('lodash');
 var ceasars = require('../');
 var {randomEncryption, decryption} = ceasars;
 
