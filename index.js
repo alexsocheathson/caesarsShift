@@ -6,7 +6,7 @@ var _ = require('lodash');
 module.exports = {
   randomEncryption: function(input) {
     var shiftBy = Math.floor(Math.random() * 27);
-    // console.log(shiftBy);
+    console.log(shiftBy);
     var result = shiftChars(input,shiftBy);
     return result;
     },
