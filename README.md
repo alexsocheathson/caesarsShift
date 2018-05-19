@@ -14,3 +14,7 @@ var dec = decryption(enc);
 Installation
 ---------------------
 `yarn install ceasarsshift` or `npm install ceasarsshift`
+
+TODO:
+---------------------
+Update tests!
